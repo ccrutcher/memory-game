@@ -18,11 +18,12 @@ import zeus from '../imgs/zeus.jpg'
 const Game = () => {
     const [currentScore, setCurrentScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
+    const [comparisonArray, setComparisonArray] = useState([]);
 
 
-    const gods = [{image: aphrodite},{image: apollo},{image: ares},{image:athena},
-        {image: artemis},{image: demeter},{image:dionysus},{image:hephaestus},
-        {image: hera},{image: hermes},{image: poseidon},{image: zeus}];
+    const gods = [{name: "aphrodite", image: aphrodite},{name: "apollo", image: apollo},{name: "ares", image: ares},{name: "athena", image:athena},
+        {name: "artemis", image: artemis},{name: "demeter", image: demeter},{name: "dionysus", image:dionysus},{name: "hephaestus", image:hephaestus},
+        {name: "hera", image: hera},{name: "hermes", image: hermes},{name: "poseidon", image: poseidon},{name: "zeus", image: zeus}];
 
 
     function shuffle(array) {
@@ -40,17 +41,34 @@ const Game = () => {
             array[randomIndex] = temporaryValue;
         }
     return array;
-}
+    }
 
 
+    //See if card has been clicked
+    const playTurn = (clickedCard) => {
+        if(comparisonArray.includes(clickedCard)){
+            setComparisonArray([]);
+            setCurrentScore(0);
+        }
+        else{
+            setComparisonArray([...comparisonArray, clickedCard]);
+            setCurrentScore(currentScore + 1);
+        }
+    }
 
+    //Check Scores
+    useEffect(() => {
+        if(currentScore > highScore){
+            setHighScore(currentScore);
+        }
+    }, [currentScore])
 
     return(
         <div className="game-container">
             <Header currentScore={currentScore} highScore={highScore} />
             <div id="card-container">
                 {shuffle(gods).map((god) => {
-                    return <Card source={god.image}/>
+                    return <Card source={god.image} name={god.name} key={god.name} playTurn={(clickedCard) => {playTurn(clickedCard)}}/>
                 })}
             </div>
         </div>
