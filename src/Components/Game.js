@@ -49,6 +49,7 @@ const Game = () => {
         if(comparisonArray.includes(clickedCard)){
             setComparisonArray([]);
             setCurrentScore(0);
+            alert("You lose")
         }
         else{
             setComparisonArray([...comparisonArray, clickedCard]);
@@ -60,6 +61,9 @@ const Game = () => {
     useEffect(() => {
         if(currentScore > highScore){
             setHighScore(currentScore);
+        }
+        if(currentScore === 12){
+            alert("You win! Congratulations!")
         }
     }, [currentScore])
 
