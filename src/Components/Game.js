@@ -46,7 +46,7 @@ const Game = () => {
 
 
     return(
-        <div>
+        <div className="game-container">
             <Header currentScore={currentScore} highScore={highScore} />
             <div id="card-container">
                 {shuffle(gods).map((god) => {
