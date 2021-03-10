@@ -1,0 +1,33 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 98vh;
+}
+
+#top-section {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  height: 15%;
+}
+
+#title {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+
+#score {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  min-width: 20vw;
+  border: 2px solid green;
+}
+
+#cards {
+  width: 100%;
+
+}
